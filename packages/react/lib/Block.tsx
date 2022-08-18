@@ -1,7 +1,7 @@
 import React from "react";
 import debug from "debug";
 import { Block } from "@notion-cms/types";
-
+import ReactPlayer from "react-player/lazy";
 import Bookmark from "./components/Bookmark";
 import Callout from "./components/Callout";
 import RTO from "./RTO";
@@ -124,6 +124,14 @@ const Block: React.FC<Props> = ({ block }) => {
           ))}
         </Column.List>
       );
+
+    case "video":
+      return <ReactPlayer
+          controls={true}
+          loop={false}
+          playing={false}
+          url={(block.video as any).external.url}
+      />
 
     // We're not rendering those block types;
     case "unsupported":
